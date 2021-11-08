@@ -22,25 +22,9 @@ connection = sql_connect(localhost, root, password)
         - check if database exists, if not create
         - check if table exists, if not create, if yes delete content and insert new
 """
-All_paths = [
-    '/Users/traenqui/Documents/Work/Valucor/Parser/test_csvfile/tblOut_4LifeCZ_21Q2.csv',
-    '/Users/traenqui/Documents/Work/Valucor/Parser/test_csvfile/tblOut_4LifeSK_21Q2.csv',
-    '/Users/traenqui/Documents/Work/Valucor/Parser/test_csvfile/tblOut_Annuities_21Q2.csv',
-    '/Users/traenqui/Documents/Work/Valucor/Parser/test_csvfile/tblOut_AP_21Q2.csv',
-    '/Users/traenqui/Documents/Work/Valucor/Parser/test_csvfile/tblOut_CriticalIllness_21Q2.csv',
-    '/Users/traenqui/Documents/Work/Valucor/Parser/test_csvfile/tblOut_Fibas_21Q2.csv',
-    '/Users/traenqui/Documents/Work/Valucor/Parser/test_csvfile/tblOut_FPTDE_21Q2.csv',
-    '/Users/traenqui/Documents/Work/Valucor/Parser/test_csvfile/tblOut_FPTIT_21Q2.csv',
-    '/Users/traenqui/Documents/Work/Valucor/Parser/test_csvfile/tblOut_ImpairedLife_21Q2.csv',
-    '/Users/traenqui/Documents/Work/Valucor/Parser/test_csvfile/tblOut_Jool_21Q2.csv',
-    '/Users/traenqui/Documents/Work/Valucor/Parser/test_csvfile/tblOut_Pulse_21Q2.csv',
-    '/Users/traenqui/Documents/Work/Valucor/Parser/test_csvfile/tblOut_SinglePolicies_21Q2.csv',
-    '/Users/traenqui/Documents/Work/Valucor/Parser/test_csvfile/tblOut_Term_21Q2.csv',
-    '/Users/traenqui/Documents/Work/Valucor/Parser/test_csvfile/tblOut_UnitLinked_21Q2.csv',
-]
 
 # Path and variables
-path = 'test_csvfile/tblOut_Term_21Q2.csv'
+path = 'test_csvfile/tblOut_AP_21Q2.csv'
 
 temp = path.split('_')
 quarter = temp[3]

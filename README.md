@@ -20,6 +20,19 @@ Don't forget to start sql server
 Get docker ready
 ```docker-compose up```
 
+## Idea
+To have a database for each quarter, with all the tables for each product within
+
+### Logic
+- get a path to a new csv file
+- extract the quarter as database name
+- extract the productname as table_name
+- check if database exists
+    - if not create
+- check if table exists
+    - if yes, drop table and create new
+    - if no create new
+
 ## Specs
 ### Input
 - Input is a excel or csv file
