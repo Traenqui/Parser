@@ -49,3 +49,14 @@ The database_connection function, redefines the connectionobject to connect to t
 - [x] setup the logic behind if table/database exists and what to do
 - [] Add function to set 'PRIMARY KEY'
 - [] Add UNION function to get output
+
+### ToDo for later Updates
+- Implement a function to check S2-Values
+- Implement a function to check StatRes-Values
+- Implement a function to check 'Active'-policies
+
+### ToDo for generating the data
+- Find a way to automate most of the process
+    - maybe automatic Access functions into Excel 
+    - Function to collect S2 and Stat-Res as far as possible
+
