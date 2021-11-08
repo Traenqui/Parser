@@ -1,5 +1,12 @@
 import mysql.connector
 from mysql.connector import Error
+import re
+
+
+def clean_res(result):
+    result = re.sub('[(,)]', '', result)
+    return result
+
 
 # connect to the server
 def sql_connect(host_name, user_name, user_password):
@@ -88,3 +95,28 @@ def table_delete(connection, table_name):
     with connection.cursor() as cursor:
         cursor.execute(drop_table_query)
         print(f'Table {table_name} deleted')
+
+# check active policies
+def check_policies(connection, table_name):
+    query = "SELECT count(policy_status) FROM " + table_name + " WHERE policy_status = 'Active'"
+    with connection.cursor() as cursor:
+        cursor.execute(query)
+        result = cursor.fetchone()
+        result = clean_res(str(result))
+        print(result, "active policies")
+
+def check_s2(connection, table_name):
+    query = "SELECT sum(s2_res) FROM " + table_name + " WHERE policy_status = 'Active'"
+    with connection.cursor() as cursor:
+        cursor.execute(query)
+        result = cursor.fetchone()
+        result = round(float(clean_res(str(result))),2)
+        print(result, "S2 Res")
+
+def check_statres(connection, table_name):
+    query = "SELECT sum(statutory_res) FROM " + table_name + " WHERE policy_status = 'Active'"
+    with connection.cursor() as cursor:
+        cursor.execute(query)
+        result = cursor.fetchone()
+        result = round(float(clean_res(str(result))),2)
+        print(result, "Stat Res")
