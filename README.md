@@ -67,11 +67,12 @@ The database_connection function, redefines the connectionobject to connect to t
 - Implement a function to check S2-Values
 - Implement a function to check StatRes-Values
 - Implement a function to check 'Active'-policies
+- To get number to check
+    - one file each quarter per value to check as csv
+    - e.g. 20Q4_S2_Check.csv import into list
+    - or make new Schema with tables to check them
 
 ### ToDo for generating the data
 - Find a way to automate most of the process
     - maybe automatic Access functions into Excel 
     - Function to collect S2 and Stat-Res as far as possible
-
-### Possible messages
-- 
