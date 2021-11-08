@@ -137,3 +137,4 @@ csv_to_sql/
 parser/
 test_csvfile/
 *.drawio
+dumps/
