@@ -73,3 +73,5 @@ The database_connection function, redefines the connectionobject to connect to t
     - maybe automatic Access functions into Excel 
     - Function to collect S2 and Stat-Res as far as possible
 
+### Possible messages
+- 

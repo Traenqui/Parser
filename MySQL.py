@@ -77,8 +77,10 @@ def table_insert_many(connection, query, data, table_name):
             cursor.executemany(query, data)
             connection.commit()
             print(cursor.rowcount, "datasets successfully inserted into " + table_name)
+            return True
     except Error as e:
-        print("Failed to insert data into the table {e}")
+        print(f"Failed to insert data into the table {e}")
+        return False
 
 # delete table
 def table_delete(connection, table_name):

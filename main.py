@@ -13,16 +13,6 @@ root="root"
 password="password"
 connection = sql_connect(localhost, root, password)
 
-"""
-    Idea to have a database for each quarter, with all the tables of each quarter within them, for easier debugging and updating
-    
-    Logic:
-        - get new file
-        - extract the quarter and name
-        - check if database exists, if not create
-        - check if table exists, if not create, if yes delete content and insert new
-"""
-
 # Path and variables
 path = 'test_csvfile/tblOut_AP_21Q2.csv'
 

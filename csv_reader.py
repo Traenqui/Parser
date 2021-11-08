@@ -12,7 +12,6 @@ def get_data(path):
     return result[1:]
 
 # get header and data
-
 def get_header():
     header = [
         "product_group" ,
