@@ -44,6 +44,7 @@ The database_connection function, redefines the connectionobject to connect to t
 ```def database_connection(host_name, user_name, user_password, db_name)```
 
 ## ToDo
-[] check delimiter csv
-[x] create truncate table function or delete table
-[x] setup the logic behind if table/database exists and what to do
+- [] check delimiter csv
+- [x] create truncate table function or delete table
+- [x] setup the logic behind if table/database exists and what to do
+- [] Add function to set 'PRIMARY KEY'
