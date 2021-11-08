@@ -130,3 +130,9 @@ dmypy.json
 
 #own Things
 temp.py
+
+.DS_Store
+__pycache__/
+csv_to_sql/
+parser/
+test_csvfile/
