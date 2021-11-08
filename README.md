@@ -48,4 +48,4 @@ The database_connection function, redefines the connectionobject to connect to t
 - [x] create truncate table function or delete table
 - [x] setup the logic behind if table/database exists and what to do
 - [] Add function to set 'PRIMARY KEY'
-[ ] Add UNION function to get output
+- [] Add UNION function to get output
