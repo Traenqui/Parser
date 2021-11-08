@@ -41,4 +41,7 @@ else:
     table_create(connection, table_name, query_table)
 
 # Table insert
-table_insert_many(connection, query_insert, data)
+table_insert_many(connection, query_insert, data, table_name)
+check_policies(connection, table_name)
+check_s2(connection, table_name)
+check_statres(connection, table_name)
