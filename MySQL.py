@@ -4,7 +4,7 @@ import re
 
 
 def clean_res(result):
-    result = re.sub('[(,)]', '', result)
+    result = re.sub("[(,)']", '', result)
     return result
 
 
@@ -17,7 +17,6 @@ def sql_connect(host_name, user_name, user_password):
             user = user_name,
             # passwd = user_password
         )
-        print("Connection to MySQL DB successful")
     except Error as e:
         print(f"The error '{e}' occured")
     return connection
@@ -32,7 +31,6 @@ def database_connection(host_name, user_name, user_password, db_name):
             # passwd = user_password,
             database=db_name
         )
-        print("Connection to MySQL DB " + db_name + " successful")
     except Error as e:
         print(f"The error '{e}' occured")
     return connection
@@ -42,7 +40,6 @@ def database_create(connection, database_name):
     cursor = connection.cursor()
     try:
         cursor.execute(query)
-        print("Database " + database_name + " created successfully")
     except Error as e:
         print(f"The error '{e}' occured")
 
@@ -62,7 +59,6 @@ def table_create(connection, table_name, query):
     cursor = connection.cursor()
     command = "CREATE TABLE " + table_name + " ( " + query + ")"
     cursor.execute(command)
-    print(f'Table {table_name} successfully created')
 
 
 def table_exists(connection, table_name):
@@ -71,10 +67,8 @@ def table_exists(connection, table_name):
         cursor.execute(query)
         result = cursor.fetchone()
         if result:
-            print(f'Table {table_name} exists')
             return True
         else:
-            print(f'Table {table_name} does not exists')
             return False
 
 # data: List of Tuples
@@ -83,8 +77,7 @@ def table_insert_many(connection, query, data, table_name):
         with connection.cursor() as cursor:
             cursor.executemany(query, data)
             connection.commit()
-            print(cursor.rowcount, "datasets successfully inserted into " + table_name)
-            return True
+            return cursor.rowcount
     except Error as e:
         print(f"Failed to insert data into the table {e}")
         return False
@@ -94,7 +87,6 @@ def table_delete(connection, table_name):
     drop_table_query = "DROP TABLE " + str(table_name)
     with connection.cursor() as cursor:
         cursor.execute(drop_table_query)
-        print(f'Table {table_name} deleted')
 
 # check active policies
 def check_policies(connection, table_name):
@@ -102,21 +94,25 @@ def check_policies(connection, table_name):
     with connection.cursor() as cursor:
         cursor.execute(query)
         result = cursor.fetchone()
-        result = clean_res(str(result))
-        print(result, "active policies")
+        result = int(clean_res(str(result)))
+        return result
 
 def check_s2(connection, table_name):
-    query = "SELECT sum(s2_res) FROM " + table_name + " WHERE policy_status = 'Active'"
+    query = "SELECT sum(s2_res) FROM " + table_name
     with connection.cursor() as cursor:
         cursor.execute(query)
         result = cursor.fetchone()
+        if clean_res(str(result)) == 'None':
+            return 0
         result = round(float(clean_res(str(result))),2)
-        print(result, "S2 Res")
+        return result
 
 def check_statres(connection, table_name):
-    query = "SELECT sum(statutory_res) FROM " + table_name + " WHERE policy_status = 'Active'"
+    query = "SELECT sum(statutory_res) FROM " + table_name
     with connection.cursor() as cursor:
         cursor.execute(query)
         result = cursor.fetchone()
+        if clean_res(str(result)) == 'None':
+            return 0
         result = round(float(clean_res(str(result))),2)
-        print(result, "Stat Res")
+        return result
