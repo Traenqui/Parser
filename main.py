@@ -1,6 +1,4 @@
-import csv
 import os
-import mysql.connector
 import logging
 
 from MySQL import *
