@@ -1,5 +1,4 @@
 import csv
-import re
 
 # Reads the csv files and converts them to the right format
 def get_data(path):
