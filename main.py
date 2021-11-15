@@ -14,7 +14,7 @@ password="password"
 
 
 # Path and variables
-path = 'test_csvfile/tblOut_Term_21Q1.csv'
+path = 'test_csvfile/tblOut_AP_20Q4.csv'
 
 temp = path.split('_')
 quarter = temp[3]
@@ -93,8 +93,8 @@ if(amount):
     logging.info(f'{amount} dataset inserted')
 
 
-diff_s2 = s2_data - check_s2(connection, table_name)
-diff_statres = StatRes_data - check_statres(connection, table_name)
+diff_s2 = abs(s2_data) - abs(check_s2(connection, table_name))
+diff_statres = abs(StatRes_data) - abs(check_statres(connection, table_name))
 diff_policies = policy_data - check_policies(connection, table_name)
 
 # check values, set >1% info, >5% warning, >10% Critical
@@ -127,3 +127,15 @@ elif diff_policies < ((policy_data * 10) / 100):
     logging.critical(f'Difference in active policies = {diff_policies}')
 else:
     logging.error(f'Difference in active policies = {diff_policies}')
+
+
+if table_exists(connection, quarter):
+    logging.info(f'Table {quarter} already exists')
+    table_delete(connection, quarter)
+    union(connection, quarter)
+    logging.info(f'Table {quarter} is successfully merged')
+else:
+    logging.warning(f'Table {quarter} does not exist')
+    union(connection, quarter)
+    logging.info(f'Table {quarter} successfully merged')
+

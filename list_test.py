@@ -29,8 +29,8 @@ for path in all_paths:
     diff_policies = 0
 
     # remove old log
-    if os.path.exists(f'logs/{quarter}{table_name}.log'):
-        os.remove(f'logs/{quarter}{table_name}.log')
+    if os.path.exists(f'logs/{quarter}_{table_name}.log'):
+        os.remove(f'logs/{quarter}_{table_name}.log')
 
     # create logger
     logger = logging.getLogger()
@@ -84,7 +84,7 @@ for path in all_paths:
         logging.info(f'Table {table_name} already exists')
         table_delete(connection, table_name)
         table_create(connection, table_name, query_table)
-        logging.info(f'Table {table_name} is empty')
+        logging.info(f'Table {table_name} is now empty')
     else:
         logging.warning(f'Table {table_name} does not exist')
         table_create(connection, table_name, query_table)
@@ -102,11 +102,11 @@ for path in all_paths:
 
     # check values, set >1% info, >5% warning, >10% Critical
     diff_s2 = round(abs(diff_s2), 2)
-    if diff_s2 <= (s2_data / 100):
+    if diff_s2 <= (abs(s2_data) / 100):
         logging.info(f'Difference in S2 is less than 1% = {diff_s2}')
-    elif diff_s2 < ((s2_data * 5) / 100):
+    elif diff_s2 < ((abs(s2_data) * 5) / 100):
         logging.warning(f'Difference in S2 is between 1-5% = {diff_s2}')
-    elif diff_s2 < ((s2_data * 10) / 100):
+    elif diff_s2 < ((abs(s2_data) * 10) / 100):
         logging.critical(f'Difference in S2 is between 5-10% = {diff_s2}')
     else:
         logging.error(f'Difference in S2 is more than 10% = {diff_s2}')

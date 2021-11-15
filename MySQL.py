@@ -116,3 +116,16 @@ def check_statres(connection, table_name):
             return 0
         result = round(float(clean_res(str(result))),2)
         return result
+
+def union(connection, quarter):
+    query = "SHOW TABLES"
+    union_query = f'CREATE TABLE {quarter} '
+    tables = []
+    with connection.cursor() as cursor:
+        cursor.execute(query)
+        for table in cursor:
+            tables.append(clean_res(str(table)))
+    for table in tables:
+        union_query += f'SELECT * FROM {table} UNION '
+    with connection.cursor() as cursor:
+        cursor.execute(union_query[:-7])

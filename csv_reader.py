@@ -1,4 +1,5 @@
 import csv
+import re
 
 # Reads the csv files and converts them to the right format
 def get_data(path):
@@ -9,7 +10,14 @@ def get_data(path):
         import_file = csv.reader(csvfile, delimiter=',')
         for row in import_file:
             result.append(tuple(row))
+        for row in result:
+            for e in row:
+                clean_res(e)
     return result[1:]
+
+def clean_res(result):
+    result = re.sub("[(,)']", '', result)
+    return result
 
 # get header and data
 def get_header():
